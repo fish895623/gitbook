@@ -1,5 +1,5 @@
 ---
-description: '@Jenkins, Docker, agnet, build'
+description: 'Jenkins, Docker, agent, build'
 ---
 
 # Pipeline build agent with Docker container
