@@ -1,12 +1,10 @@
 # Table of contents
 
-* [Initial page](README.md)
-
-## a
-
-* [Untitled1](a/untitled1/README.md)
-  * [Untitled4](a/untitled1/untitled4/README.md)
-    * [Untitled5](a/untitled1/untitled4/untitled5.md)
-  * [Untitled2](a/untitled1/untitled2/README.md)
-    * [Untitled3](a/untitled1/untitled2/untitled3.md)
+* [Pipeline build agent with Docker container](README.md)
+* [python](python/README.md)
+  * [matplotlib](python/matplotlib/README.md)
+    * [pyplot](python/matplotlib/pyplot/README.md)
+      * [xticks](python/matplotlib/pyplot/xticks.md)
+  * [test1](python/test1.md)
+  * [test2](python/test2.md)
 

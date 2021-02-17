@@ -1,0 +1,6 @@
+# pyplot
+
+* `matplotlib.pyplot.xticks()`
+
+\`\`
+
