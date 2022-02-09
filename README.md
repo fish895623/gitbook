@@ -18,3 +18,4 @@ chmod 777 /var/run/docker.sock
 ```
 
 ## [python](python)
+### [Exceptions](python/Exceptions)
