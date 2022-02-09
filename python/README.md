@@ -1,5 +1,5 @@
 # Python
 
-## (Exceptions)[Exceptions]
+## [Exceptions](Exceptions)
 
-## (matplotlib)[matplotlib]
+## [matplotlib](matplotlib)
