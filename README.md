@@ -17,3 +17,5 @@ usermod -aG docker jenkins
 chmod 777 /var/run/docker.sock
 ```
 
+## [Python](python)
+### [Exceptions](python/Exceptions)
