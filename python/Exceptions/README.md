@@ -1,2 +1,2 @@
 # Exceptions
-* [FileNotFoundError](FileNotFoundError)
+* [FileNotFoundError](FileNotFoundError.md)
