@@ -1,9 +1,5 @@
-# python
+# Python
 
-## This is Python
+## (Exceptions)[Exceptions]
 
-### This is how to print hello world
-
-```python
-print('Hello World')
-```
+## (matplotlib)[matplotlib]
