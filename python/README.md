@@ -2,4 +2,4 @@
 
 ## [Exceptions](Exceptions)
 
-## [matplotlib](matplotlib)
+## [Matplotlib](matplotlib)
