@@ -1,3 +1,2 @@
 # Exceptions
-
-## [FileNotFoundError](FileNotFoundError)
+* [FileNotFoundError](FileNotFoundError)
