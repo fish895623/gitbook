@@ -1,4 +1,0 @@
-# matplotlib
-
-* [matplotlib.pyplot](pyplot/)
-
