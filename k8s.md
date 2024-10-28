@@ -1,7 +1,7 @@
 # Kubernetes
 
-## 1. Pod
+## Pod
 
-## 1. Service
+## Service
 
-## 1. ReplicaSet
+## ReplicaSet
