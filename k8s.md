@@ -43,3 +43,104 @@ High Availability / FailOver
 특정 수의 Pod가 항상 실행되도록 함.
 
 ## Deployment
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
+```
+
+- .spec.replicas: 배포할 복제본 수
+- .spec.selector: 배포할 Pod 선택
+- .spec.template.metadata.labels: Pod 라벨
+
+## Cluster Configuration
+
+swap 비활성화 해야됨
+
+containerd 사용
+
+#### Pod 간의 통신이 가능하도록 설정
+
+iptables이 트래픽을 filter 할수 있도록 활성화 해줌.
+
+이는 Container 간의 통신을 위해 필요함.
+
+```conf
+# /etc/modules-load.d/kubernetes.conf
+br_netfilter
+```
+
+```conf
+# /etc/sysctl.d/99-kubernetes.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+```
+
+### 패키지 설치
+
+```
+kubelet kubeadm kubectl
+```
+
+### 초기화
+
+```sh
+kubeadm config images pull
+```
+
+### Cluster 생성
+
+```sh
+kubadm init --pod-network-cidr=10.10.0.0/16
+```
+
+네트워크 대역을 10.10.0.0/16으로 설정하는 이유는 네트워크 충돌을 피하기 위함.
+
+<!-- kubeadm join 192.168.0.26:6443 --token 8l8yhq.vrf31tts2gm0wxyo \
+        --discovery-token-ca-cert-hash sha256:757869f0898ac82b2490fab2d23f535d334fe86e2f9e42474490e434212d82f3 -->
+
+### CNI (Container Network Interface)
+
+Pod 간의 통신을 위해 필요함.
+
+CNI 종류
+
+- Flannel
+- Calico
+- Weave Net
+
+간단한 Calico 를 쓰겠음
+
+```sh
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+```
+
+### ERROR
+
+kube-proxy 에러
+
+```sh
+containerd config default | tee /etc/containerd/config.toml
+sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
+systemctl restart containerd
+systemctl restart kubelet
+```
