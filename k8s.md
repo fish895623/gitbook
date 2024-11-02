@@ -1,5 +1,25 @@
 # Kubernetes
 
+## Setup Environment using vagrant
+
+use vagrant to setup environment using ubuntu 22.04
+
+```ruby
+Vagrant.configure("2") do |config|
+  (1..3).each do |i|
+    config.vm.define "node#{i}" do |node|
+      node.vm.box = "generic/ubuntu2204"
+      node.vm.hostname = "node#{i}"
+      node.vm.network "public_network"
+    end
+  end
+
+  config.vm.provider "hyperv" do |hv|
+    hv.memory = "1024"
+  end
+end
+```
+
 ## Pod
 
 하나이상의 컨테이너로 구성되어 있음
