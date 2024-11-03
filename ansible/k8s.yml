@@ -1,0 +1,21 @@
+- name: Install kubernetes
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Add apt key to /etc/apt/keyrings/kubernetes-archive-keyring.gpg
+      apt_key:
+        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+        state: present
+        keyring: /etc/apt/keyrings/kubernetes-archive-keyring.gpg
+    - name: Add apt repository if not exists
+      apt_repository:
+        repo: deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main
+        state: present
+    - name: Install containerd
+      apt:
+        name: containerd
+        state: present
+    - name: Install kubernetes
+      apt:
+        name: kubelet kubeadm kubectl
+        state: present

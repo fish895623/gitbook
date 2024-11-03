@@ -2,14 +2,15 @@
 - name: Update system packages
   hosts: webservers
   become: true
+  become_method: sudo
+  become_user: root
   tasks:
-    - name: Update apt cache
-      apt:
+    - name: Upgrade all packages
+      ansible.builtin.apt:
+        name: '*'
         update_cache: yes
         cache_valid_time: 3600
-    - name: Upgrade all packages
-      apt:
-        upgrade: dist
+        state: latest
     - name: Remove unused packages
-      apt:
+      ansible.builtin.apt:
         autoremove: yes

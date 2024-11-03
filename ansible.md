@@ -23,6 +23,8 @@ ansible_password=<password>
 
 ## Run playbook
 
+Example of playbook
+
 `update.yml`
 ```yaml
 - name: Update system packages
