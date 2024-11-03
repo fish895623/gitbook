@@ -1,15 +1,15 @@
 - name: Install kubernetes
   hosts: webservers
-  become: true
   tasks:
     - name: Add apt key to /etc/apt/keyrings/kubernetes-archive-keyring.gpg
       apt_key:
-        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+        url: https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key
         state: present
-        keyring: /etc/apt/keyrings/kubernetes-archive-keyring.gpg
+        keyring: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
     - name: Add apt repository if not exists
       apt_repository:
-        repo: deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main
+        repo: deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /
+        filename: "kubernetes"
         state: present
     - name: Install containerd
       apt:
@@ -17,5 +17,12 @@
         state: present
     - name: Install kubernetes
       apt:
-        name: kubelet kubeadm kubectl
+        name: 
+          - kubelet 
+          - kubeadm 
+          - kubectl
         state: present
+    - name: disable swap
+      ansible.builtin.shell: sudo swapoff -a
+    - name: remove swap from fstab
+      ansible.builtin.shell: sudo sed -i '/swap/d' /etc/fstab
