@@ -1,5 +1,6 @@
 - name: Install kubernetes
   hosts: webservers
+  become: yes
   tasks:
     - name: Add apt key to /etc/apt/keyrings/kubernetes-archive-keyring.gpg
       apt_key:
@@ -26,3 +27,17 @@
       ansible.builtin.shell: sudo swapoff -a
     - name: remove swap from fstab
       ansible.builtin.shell: sudo sed -i '/swap/d' /etc/fstab
+    - name: ipv4 forwarding on sysctl.d/k8s.conf
+      ansible.builtin.copy:
+        src: sysctl.d/k8s.conf
+        dest: /etc/sysctl.d/k8s.conf
+        mode: '0644'
+    - name: reload sysctl
+      ansible.builtin.shell: sysctl --system
+    - name: module-load-k8s
+      ansible.builtin.copy:
+        src: modules-load.d/k8s.conf
+        dest: /etc/modules-load.d/k8s.conf
+        mode: '0644'
+    - name: reload modules
+      ansible.builtin.shell: modprobe br_netfilter

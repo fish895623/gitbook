@@ -20,6 +20,60 @@ Vagrant.configure("2") do |config|
 end
 ```
 
+## Install kubernetes using ansible
+
+`k8s.yml`
+```yaml
+---
+- name: Install kubernetes
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Add apt key to /etc/apt/keyrings/kubernetes-archive-keyring.gpg
+      apt_key:
+        url: https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key
+        state: present
+        keyring: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+    - name: Add apt repository if not exists
+      apt_repository:
+        repo: deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /
+        filename: "kubernetes"
+        state: present
+    - name: Install containerd
+      apt:
+        name: containerd
+        state: present
+    - name: Install kubernetes
+      apt:
+        name: 
+          - kubelet 
+          - kubeadm 
+          - kubectl
+        state: present
+    - name: disable swap
+      ansible.builtin.shell: sudo swapoff -a
+    - name: remove swap from fstab
+      ansible.builtin.shell: sudo sed -i '/swap/d' /etc/fstab
+    - name: ipv4 forwarding on sysctl.d/k8s.conf
+      ansible.builtin.copy:
+        src: sysctl.d/k8s.conf
+        dest: /etc/sysctl.d/k8s.conf
+        mode: '0644'
+    - name: reload sysctl
+      ansible.builtin.shell: sysctl --system
+    - name: module-load-k8s
+      ansible.builtin.copy:
+        src: modules-load.d/k8s.conf
+        dest: /etc/modules-load.d/k8s.conf
+        mode: '0644'
+    - name: reload modules
+      ansible.builtin.shell: modprobe br_netfilter
+```
+
+kubeadm 으로 클러스터 생성시 필요한 토큰 생성
+
+`kubeadm token create --print-join-command`
+
 ## Pod
 
 하나이상의 컨테이너로 구성되어 있음
