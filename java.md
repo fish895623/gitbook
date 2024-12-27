@@ -258,24 +258,72 @@ class User {
     ", email='" + email + '\'' +
     '}';
   }
-}
 
-public class Main {
-  public static void main(String[] args) {
-    User user = new User.Builder()
-    .firstName("John")
-    .lastName("Doe")
-    .age(30)
-    .email("john.doe@example.com")
-    .build();
+  public class Main {
+    public static void main(String[] args) {
+      User user = new User.Builder()
+      .firstName("John")
+      .lastName("Doe")
+      .age(30)
+      .email("john.doe@example.com")
+      .build();
 
-    System.out.println(user);
+      System.out.println(user);
+    }
   }
+}
+```
+
+##### lombok
+
+lombok 라이브러리에 어노테이션으로 builder 패턴을 자동으로 만들어줌
+
+```java
+@Builder
+class User {
+  private final String firstName;
+  private final String lastName;
+  private final int age;
+  private final String email;
 }
 ```
 
 #### Getter Setter
 
 ```java
+class User {
+  private final String firstName;
+  private final String lastName;
+  private final int age;
+  private final String email;
 
+  // getter
+  public String getFirstName()
+  public String getLastName();
+  public int getAge();
+  public String getEmail();
+
+  // setter
+  public void settFirstName(Stringa a) {this.firstName = a};
+  public void setLastName(String a) {this.lastName = a};
+  public void setAge(int a) {this.age = a};
+  public void setEmail(int a) {this.email = a};
+}
 ```
+
+class 변수값은 get set으로만 불러올수 있음
+
+##### lombok
+
+```java
+@Getter
+@Setter
+class User {
+  private final String firstName;
+  private final String lastName;
+  private final int age;
+  private final String email;
+}
+```
+
+lombok 라이브러리로 위와 같은 역할을 할수 있음
