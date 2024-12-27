@@ -261,16 +261,16 @@ class User {
 }
 
 public class Main {
-    public static void main(String[] args) {
-        User user = new User.Builder()
-                .firstName("John")
-                .lastName("Doe")
-                .age(30)
-                .email("john.doe@example.com")
-                .build();
+  public static void main(String[] args) {
+    User user = new User.Builder()
+    .firstName("John")
+    .lastName("Doe")
+    .age(30)
+    .email("john.doe@example.com")
+    .build();
 
-        System.out.println(user);
-    }
+    System.out.println(user);
+  }
 }
 ```
 
