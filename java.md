@@ -1,24 +1,28 @@
-```
-{접근제한자} {유형 선언} {이름} {상속 키워드}
-```
+## Default keywords
 
-### 접근제한자
+### access_modifiers 접근제한자
 
 - public
 - protected
 - private
 
-### 유형 선언
+### type 유형
 
 - class
 - interface
 - enum
 - record
 
-### 상속 키워드
+### inherit_keywords 상속 키워드
 
 - extends
 - implements
+
+## Object
+
+```
+`access_modifiers` `type` `name` `inherit_keywords`
+```
 
 #### 상속 키워드 사용 설명
 
@@ -154,4 +158,56 @@ class E {
   int methodA() {}; // interface implemtns 시 함수를 구현해야함
   int methodB() {}; // interface implemtns 시 함수를 구현해야함
 }
+```
+
+## field 선언
+
+```java
+public class hello {
+  `access_modifiers` `(static)` `type` `name`
+}
+```
+
+### Pattern
+
+#### Singleton
+
+##### Default Singleton pattern
+
+```java
+public class Single {
+  private static Single singleton = new Single();
+  private Single() {};
+  static Single getInstance() {
+    return singleton;
+  }
+}
+```
+
+##### LazyHolder pattern
+
+```java
+public class Single {
+  private Single() {};
+  public static Single getInstance() {
+    return LazyHolder.INSTANCE;
+  }
+  private static class LazyHolder {
+    private static final Singleton INSTANCE = new Singleton();
+  }
+}
+```
+
+- Thread safe 를 보장함 class 가 중복 실행안됨
+
+#### Builder Pattern
+
+```java
+
+```
+
+#### Getter Setter
+
+```java
+
 ```
