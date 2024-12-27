@@ -18,17 +18,25 @@
 - extends
 - implements
 
+### final
+
+final은 한번 값이 등록되면 값을 절대 못바꿈.
+
+### static
+
+static은 Object 선언없이 사용 가능함.
+
 ## Object
 
 ```
 `(access_modifiers:default{private})` `(final:default{none})` `type:{class,interface,enum,record}` `name` `inherit_keywords:{implements,extends}`
 ```
 
-#### 상속 키워드 사용 설명
+### 상속 키워드 사용 설명
 
 - class 와 interface 만 상속가능
 
-##### class
+#### class
 
 ```java
 class A {
@@ -41,7 +49,7 @@ class B extends A {
 
 `class B` 는 상속 즉 extends (연장, 확장) 하므로, field variable 로 int a, int b를 가짐
 
-##### interface
+#### interface
 
 - 인터페이스는 메소드 목업 제작용도
 
@@ -89,7 +97,7 @@ interface D extends C, E {
   int methodE(); // extends
 ```
 
-##### class from interface
+#### class from interface
 
 interface implements (이행, 구현, 시행)
 
@@ -119,7 +127,7 @@ class B implements A, C {
 
 여러개 상속 가능
 
-##### class from class and interface
+#### class from class and interface
 
 class 와 interface 상속
 
@@ -165,14 +173,6 @@ class E {
 ```
 (access_modifiers:default{private}) (final:default{none}) (static:default{none}) type name (default_value:optional)
 ```
-
-### final
-
-final은 한번 값이 등록되면 값을 절대 못바꿈.
-
-### static
-
-static은 Object 선언없이 사용 가능함.
 
 ## Pattern
 
