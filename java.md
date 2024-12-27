@@ -21,7 +21,7 @@
 ## Object
 
 ```
-`access_modifiers` `type` `name` `inherit_keywords`
+`(access_modifiers:default{private})` `(final:default{none})` `type:{class,interface,enum,record}` `name` `inherit_keywords:{implements,extends}`
 ```
 
 #### 상속 키워드 사용 설명
