@@ -162,17 +162,23 @@ class E {
 
 ## field 선언
 
-```java
-public class hello {
-  `access_modifiers` `(static)` `type` `name`
-}
+```
+(access_modifiers:default{private}) (final:default{none}) (static:default{none}) type name (default_value:optional)
 ```
 
-### Pattern
+### final
 
-#### Singleton
+final은 한번 값이 등록되면 값을 절대 못바꿈.
 
-##### Default Singleton pattern
+### static
+
+static은 Object 선언없이 사용 가능함.
+
+## Pattern
+
+### Singleton
+
+#### Default Singleton pattern
 
 ```java
 public class Single {
@@ -184,7 +190,7 @@ public class Single {
 }
 ```
 
-##### LazyHolder pattern
+#### LazyHolder pattern
 
 ```java
 public class Single {
@@ -200,7 +206,7 @@ public class Single {
 
 - Thread safe 를 보장함 class 가 중복 실행안됨
 
-#### Builder Pattern
+### Builder Pattern
 
 ```java
 class User {
@@ -274,7 +280,7 @@ class User {
 }
 ```
 
-##### lombok
+#### lombok
 
 lombok 라이브러리에 어노테이션으로 builder 패턴을 자동으로 만들어줌
 
@@ -288,7 +294,7 @@ class User {
 }
 ```
 
-#### Getter Setter
+### Getter Setter
 
 ```java
 class User {
@@ -313,7 +319,7 @@ class User {
 
 class 변수값은 get set으로만 불러올수 있음
 
-##### lombok
+#### lombok
 
 ```java
 @Getter
