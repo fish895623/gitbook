@@ -50,11 +50,108 @@ interface D extends C {
 }
 ```
 
-실 사용시 결과
+실 사용시 포함 함수 결과
 
 ```java
 interface D {
+  int methodC(); // extends
+  int methodD(); // extends
+}
+```
+
+여러개 상속 가능
+
+```java
+interface C {
   int methodC();
+}
+interface E {
+  int methodE();
+}
+interface D extends C, E {
   int methodD();
+}
+```
+
+여러개 상속
+
+실 사용시 포함 함수 결과
+
+```java
+interface D extends C, E {
+  int methodD();
+
+  int methodC(); // extends
+  int methodE(); // extends
+```
+
+##### class from interface
+
+interface implements (이행, 구현, 시행)
+
+```java
+interface A {
+  int methodA();
+}
+class B implements A {
+  int fieldVariableB;
+  int methodA() {}; // interface 함수를 구현해야함
+}
+```
+
+```java
+interface A {
+  int methodA();
+}
+interface C {
+  int methodC();
+}
+class B implements A, C {
+  int fieldVariableB;
+  int methodA() {}; // interface 함수를 구현해야함
+  int methodC() {}; // interface 함수를 구현해야함
+}
+```
+
+여러개 상속 가능
+
+##### class from class and interface
+
+class 와 interface 상속
+
+```java
+interface A {
+  int methodA();
+}
+interface B {
+  int methodB();
+}
+class C {
+  int fieldVariableC;
+}
+class D {
+  int fieldVariableD;
+}
+class E extends C, D implements A, B {
+  int fieldVariableE;
+  int methodE() {};
+
+  int methodA() {}; // interface implemtns 시 함수를 구현해야함
+  int methodB() {}; // interface implemtns 시 함수를 구현해야함
+}
+```
+
+결과적으로 class E 에서 사용 가능한것
+
+```java
+class E {
+  int fieldVariableE;
+  int methodE() {};
+
+  int fieldVariableC; // extends from class C
+  int fieldVariableD; // extends from class D
+
+  int methodA() {}; // interface implemtns 시 함수를 구현해야함
+  int methodB() {}; // interface implemtns 시 함수를 구현해야함
 }
 ```
